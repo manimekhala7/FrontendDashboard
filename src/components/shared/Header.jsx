@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
-import { HiOutlineBell, HiOutlineSearch, HiOutlineChatAlt } from 'react-icons/hi'
+import { HiOutlineBell, HiOutlineSearch, HiOutlineChatAlt,HiUser,Hiuser,HiOutlineLogout,} from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 
@@ -8,7 +8,9 @@ export default function Header() {
 	const navigate = useNavigate()
 
 	return (
-		<div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
+		<div className="bg-gray h-16 px-4 border-b border-gray-100">
+			<div className="h-16 bg-white p-4 rounded-sm border border-gray-500 flex items-center justify-between ">
+
 			<div className="relative">
 				<HiOutlineSearch fontSize={20} className="text-gray-400 absolute top-1/2 left-3 -translate-y-1/2" />
 				<input
@@ -84,8 +86,7 @@ export default function Header() {
 							<span className="sr-only">Open user menu</span>
 							<div
 								className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
-								style={{ backgroundImage: 'url("https://source.unsplash.com/80x80?face")' }}
-							>
+								style={{ backgroundImage: 'url("https://source.unsplash.com/80x80?face")' }}>
 								<span className="sr-only">Marc Backes</span>
 							</div>
 						</Menu.Button>
@@ -100,48 +101,41 @@ export default function Header() {
 						leaveTo="transform opacity-0 scale-95"
 					>
 						<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 w-48 rounded-sm shadow-md p-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-							<Menu.Item>
-								{({ active }) => (
-									<div
-										onClick={() => navigate('/profile')}
-										className={classNames(
-											active && 'bg-gray-100',
-											'active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
-										)}
-									>
-										Your Profile
-									</div>
-								)}
-							</Menu.Item>
-							<Menu.Item>
-								{({ active }) => (
-									<div
-										onClick={() => navigate('/settings')}
-										className={classNames(
-											active && 'bg-gray-100',
-											'active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
-										)}
-									>
-										Settings
-									</div>
-								)}
-							</Menu.Item>
-							<Menu.Item>
-								{({ active }) => (
-									<div
-										className={classNames(
-											active && 'bg-gray-100',
-											'active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
-										)}
-									>
-										Sign out
-									</div>
-								)}
-							</Menu.Item>
-						</Menu.Items>
+							
+							<div className="flex text-center gap-2 px-4 py-2 border-b text-sm text-gray-500">Ms.Jerslin
+							</div>
+						  <Menu.Item>
+    {({ active }) => (
+      <div
+        onClick={() => navigate('/profile')}
+        className={`flex items-center gap-2 px-4 py-2 text-gray-700 cursor-pointer rounded-sm ${
+          active ? 'bg-gray-100' : ''
+        }`}
+      >
+        <HiUser className="h-5 w-5" />
+        <span>Your Profile</span>
+      </div>
+    )}
+  </Menu.Item>
+
+  <Menu.Item>
+    {({ active }) => (
+      <div
+        onClick={() => console.log('Sign out')}
+        className={`flex items-center gap-2 px-4 py-2 text-gray-700 cursor-pointer rounded-sm ${
+          active ? 'bg-gray-100' : ''
+        }`}
+      >
+        <HiOutlineLogout className="h-5 w-5" />
+        <span>Sign out</span>
+      </div>
+    )}
+  </Menu.Item>
+</Menu.Items>
 					</Transition>
 				</Menu>
 			</div>
+		</div>
 		</div>
 	)
 }
